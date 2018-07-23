@@ -1,0 +1,26 @@
+When this runs, it produces nice rectangular labelled buttons with a flat, slightly 3D appearance. I attempted to get the same effect as follows:
+
+    FlowLayout flowLayoutManager = new FlowLayout(FlowLayout.RIGHT);
+    JPanel lowerPanel = new JPanel(flowLayoutManager);
+    lowerPanel.setBorder(
+            BorderFactory.createEtchedBorder(
+            EtchedBorder.RAISED));
+    lowerPanel.setBackground(Color.ORANGE);
+    lowerPanel.setPreferredSize(new Dimension(700, 100));
+    lowerPanel.setMaximumSize(lowerPanel.getPreferredSize());
+    lowerPanel.setMinimumSize(lowerPanel.getPreferredSize());
+
+    /*
+     * cardReaderButtonPanel holds three card reader control buttons
+     */
+    JPanel cardReaderButtonPanel = new JPanel(new GridLayout(1, 3, 10, 0));
+    cardReaderButtonPanel.setBorder(BorderFactory.createEmptyBorder(8, 0, 0, 0));
+    cardReaderButtonPanel.setOpaque(false); // transparent background
+
+    String[] labels = {"Load", "Stop", "Start"};
+    for (String label : labels) {
+        JButton button = new JButton(label);
+        cardReaderButtonPanel.add(button);
+    }
+    lowerPanel.add(cardReaderButtonPanel);
+... but my buttons look like Mac OS X Aqua lozenges! Unlike in the Calculator example, I'm adding the panel of buttons to an enclosing panel that itself is enclosed by the center of a BorderLayout - but I don't see how that could influence the way a button is drawn.
